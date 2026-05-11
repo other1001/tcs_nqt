@@ -1,0 +1,512 @@
+
+<h2 class="sr-only">TCS NQT Ultimate 8-Week Preparation Roadmap — complete topic list, daily targets, and resources for each section</h2>
+
+<style>
+  .roadmap { padding: 1rem 0; font-family: var(--font-sans);}
+  .section-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tab { padding: 6px 14px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); font-size: 13px; cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); transition: all 0.15s; }
+  .tab.active { background: #3C3489; color: #EEEDFE; border-color: #3C3489; }
+  .tab:hover:not(.active) { background: var(--color-background-secondary); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .week-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+  .week-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .week-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+  .week-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+  .week-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+  .topics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .topic-item { font-size: 13px; color: var(--color-text-primary); display: flex; align-items: flex-start; gap: 6px; }
+  .topic-item::before { content: '›'; color: var(--color-text-tertiary); flex-shrink: 0; margin-top: 1px; }
+  .meta-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .meta-pill { font-size: 12px; padding: 3px 10px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); display: flex; align-items: center; gap: 4px; }
+  .divider { height: 0.5px; background: var(--color-border-tertiary); margin: 12px 0; }
+  .resources-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .resource-tag { font-size: 12px; padding: 4px 10px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .stat-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; }
+  .stat-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .stat-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .stat-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+  .priority-bar { margin-bottom: 1rem; }
+  .priority-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .priority-label { font-size: 13px; color: var(--color-text-primary); width: 160px; flex-shrink: 0; }
+  .priority-track { flex: 1; height: 6px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
+  .priority-fill { height: 100%; border-radius: 3px; }
+  .priority-pct { font-size: 12px; color: var(--color-text-secondary); width: 36px; text-align: right; }
+  .warning-box { background: #FAEEDA; border: 0.5px solid #FAC775; border-radius: var(--border-radius-md); padding: 12px 14px; margin-bottom: 1rem; }
+  .warning-box p { font-size: 13px; color: #633806; margin: 0; }
+  .tip-box { background: #E1F5EE; border: 0.5px solid #9FE1CB; border-radius: var(--border-radius-md); padding: 12px 14px; margin-top: 1rem; }
+  .tip-box p { font-size: 13px; color: #085041; margin: 0; }
+  .daily-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; margin-bottom: 1rem; }
+  .daily-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px; }
+  .daily-time { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+  .daily-desc { font-size: 12px; color: var(--color-text-secondary); margin-top: 3px; }
+  .concept-list { display: flex; flex-direction: column; gap: 6px; }
+  .concept-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; padding: 8px 12px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); color: var(--color-text-primary); }
+  .concept-num { font-weight: 500; color: var(--color-text-tertiary); width: 18px; flex-shrink: 0; }
+  .website-list { display: flex; flex-direction: column; gap: 8px; }
+  .website-card { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); }
+  .website-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .website-desc { font-size: 12px; color: var(--color-text-secondary); }
+  .website-badge { font-size: 11px; padding: 3px 8px; border-radius: 10px; }
+</style>
+
+<div class="roadmap">
+
+  <div class="overview-grid">
+    <div class="stat-card">
+      <div class="stat-label">total duration</div>
+      <div class="stat-value">8</div>
+      <div class="stat-sub">weeks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">daily commitment</div>
+      <div class="stat-value">3 hrs</div>
+      <div class="stat-sub">per day</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">sections covered</div>
+      <div class="stat-value">5</div>
+      <div class="stat-sub">complete</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">mock tests</div>
+      <div class="stat-value">7+</div>
+      <div class="stat-sub">in final week</div>
+    </div>
+  </div>
+
+  <div class="section-tabs">
+    <button class="tab active" onclick="showPanel('overview')">Overview</button>
+    <button class="tab" onclick="showPanel('aptitude')">Aptitude & Reasoning</button>
+    <button class="tab" onclick="showPanel('verbal')">Verbal English</button>
+    <button class="tab" onclick="showPanel('programming')">Programming Logic</button>
+    <button class="tab" onclick="showPanel('dbms')">DBMS + MySQL</button>
+    <button class="tab" onclick="showPanel('coding')">Coding / DSA</button>
+    <button class="tab" onclick="showPanel('daily')">Daily Schedule</button>
+    <button class="tab" onclick="showPanel('resources')">Resources</button>
+  </div>
+
+  <div id="panel-overview" class="panel active">
+    <div class="warning-box">
+      <p><strong>Most important warning:</strong> 80% of students fail in Aptitude, not Coding. Start with Aptitude from day one — it is the real filter.</p>
+    </div>
+
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">Focus priority across 8 weeks</p>
+    <div class="priority-bar">
+      <div class="priority-row">
+        <div class="priority-label">Aptitude & Reasoning</div>
+        <div class="priority-track"><div class="priority-fill" style="width:90%;background:#3C3489;"></div></div>
+        <div class="priority-pct">90%</div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-label">Verbal English</div>
+        <div class="priority-track"><div class="priority-fill" style="width:75%;background:#0F6E56;"></div></div>
+        <div class="priority-pct">75%</div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-label">Programming Logic</div>
+        <div class="priority-track"><div class="priority-fill" style="width:65%;background:#185FA5;"></div></div>
+        <div class="priority-pct">65%</div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-label">DBMS + MySQL</div>
+        <div class="priority-track"><div class="priority-fill" style="width:55%;background:#854F0B;"></div></div>
+        <div class="priority-pct">55%</div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-label">Coding / DSA</div>
+        <div class="priority-track"><div class="priority-fill" style="width:50%;background:#993C1D;"></div></div>
+        <div class="priority-pct">50%</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">8-week schedule at a glance</p>
+    <div class="concept-list">
+      <div class="concept-item"><span class="concept-num">W1</span><span>Aptitude — Number System, Percentages, Profit & Loss, Time & Work</span></div>
+      <div class="concept-item"><span class="concept-num">W2</span><span>Aptitude — Time Speed Distance, Ratio, Averages, SI/CI + 30 questions/day</span></div>
+      <div class="concept-item"><span class="concept-num">W3</span><span>Reasoning — Syllogisms, Blood Relations, Series, Coding-Decoding, Seating</span></div>
+      <div class="concept-item"><span class="concept-num">W4</span><span>Verbal English — RC, Error Spotting, Synonyms/Antonyms, Para Jumbles</span></div>
+      <div class="concept-item"><span class="concept-num">W5</span><span>Programming Logic — Output questions, Complexity, OOP, Recursion basics</span></div>
+      <div class="concept-item"><span class="concept-num">W6</span><span>DBMS theory (2 days) + MySQL queries full practice (5 days)</span></div>
+      <div class="concept-item"><span class="concept-num">W7</span><span>Coding/DSA — Arrays, Strings, Sorting, Math problems, HackerRank</span></div>
+      <div class="concept-item"><span class="concept-num">W8</span><span>Full revision + 1 mock test daily + weak area focus only</span></div>
+    </div>
+  </div>
+
+  <div id="panel-aptitude" class="panel">
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#EEEDFE;color:#3C3489;">Week 1</span>
+        <div>
+          <div class="week-title">Quantitative Aptitude — Foundation</div>
+          <div class="week-sub">Core arithmetic topics — highest NQT weightage</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Number System & Divisibility</div>
+        <div class="topic-item">LCM and HCF</div>
+        <div class="topic-item">Percentages</div>
+        <div class="topic-item">Profit, Loss & Discount</div>
+        <div class="topic-item">Simple Interest</div>
+        <div class="topic-item">Compound Interest</div>
+        <div class="topic-item">Ratio & Proportion</div>
+        <div class="topic-item">Averages & Mixtures</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>30 questions/day</span>
+        <span class="meta-pill"><i class="ti ti-book" aria-hidden="true"></i>IndiaBix + RS Aggarwal</span>
+      </div>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#EEEDFE;color:#3C3489;">Week 2</span>
+        <div>
+          <div class="week-title">Quantitative Aptitude — Advanced</div>
+          <div class="week-sub">Speed topics + Data Interpretation</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Time & Work</div>
+        <div class="topic-item">Pipes & Cisterns</div>
+        <div class="topic-item">Time Speed Distance</div>
+        <div class="topic-item">Trains, Boats & Streams</div>
+        <div class="topic-item">Permutations & Combinations</div>
+        <div class="topic-item">Probability (basics)</div>
+        <div class="topic-item">Data Interpretation — Tables</div>
+        <div class="topic-item">Data Interpretation — Charts</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>30 questions/day</span>
+        <span class="meta-pill"><i class="ti ti-clock" aria-hidden="true"></i>Time yourself on each</span>
+      </div>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#EEEDFE;color:#3C3489;">Week 3</span>
+        <div>
+          <div class="week-title">Logical Reasoning — Full Coverage</div>
+          <div class="week-sub">Pattern-based — improves fast with practice</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Syllogisms</div>
+        <div class="topic-item">Blood Relations</div>
+        <div class="topic-item">Direction & Distance</div>
+        <div class="topic-item">Number Series</div>
+        <div class="topic-item">Letter & Mixed Series</div>
+        <div class="topic-item">Coding-Decoding</div>
+        <div class="topic-item">Seating Arrangements</div>
+        <div class="topic-item">Puzzles</div>
+        <div class="topic-item">Input-Output</div>
+        <div class="topic-item">Analogies & Classification</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>25 questions/day</span>
+        <span class="meta-pill"><i class="ti ti-book" aria-hidden="true"></i>IndiaBix + PrepInsta</span>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <p>After finishing Weeks 1–3, revisit your weakest aptitude topic for 30 mins daily in Weeks 4–8. Aptitude score is the biggest predictor of NQT success.</p>
+    </div>
+  </div>
+
+  <div id="panel-verbal" class="panel">
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#E1F5EE;color:#0F6E56;">Week 4</span>
+        <div>
+          <div class="week-title">Verbal English — Full Section</div>
+          <div class="week-sub">Easiest section to improve fast — don't skip it</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Reading Comprehension</div>
+        <div class="topic-item">Sentence Completion</div>
+        <div class="topic-item">Error Spotting</div>
+        <div class="topic-item">Synonyms & Antonyms</div>
+        <div class="topic-item">Para Jumbles</div>
+        <div class="topic-item">Fill in the Blanks</div>
+        <div class="topic-item">One-word Substitution</div>
+        <div class="topic-item">Idioms & Phrases</div>
+        <div class="topic-item">Spelling Correction</div>
+        <div class="topic-item">Cloze Test</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>20 questions/day</span>
+        <span class="meta-pill"><i class="ti ti-article" aria-hidden="true"></i>Read 1 English article/day</span>
+        <span class="meta-pill"><i class="ti ti-book" aria-hidden="true"></i>IndiaBix Verbal section</span>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <p>Spend 10 minutes each morning reading BBC News or The Hindu. After 3 weeks your RC speed will increase noticeably — this is the highest ROI habit for Verbal.</p>
+    </div>
+  </div>
+
+  <div id="panel-programming" class="panel">
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#E6F1FB;color:#185FA5;">Week 5</span>
+        <div>
+          <div class="week-title">Programming Logic & Concepts</div>
+          <div class="week-sub">Output prediction + conceptual MCQs — you already have basics here</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Output prediction — loops</div>
+        <div class="topic-item">Output prediction — arrays</div>
+        <div class="topic-item">Output prediction — pointers/ref</div>
+        <div class="topic-item">Time Complexity basics</div>
+        <div class="topic-item">Space Complexity basics</div>
+        <div class="topic-item">Recursion — trace output</div>
+        <div class="topic-item">OOP — Classes & Objects</div>
+        <div class="topic-item">Inheritance basics</div>
+        <div class="topic-item">Polymorphism concept</div>
+        <div class="topic-item">Data types & type casting</div>
+        <div class="topic-item">Bitwise operators</div>
+        <div class="topic-item">Exception handling concept</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>15–20 MCQs/day</span>
+        <span class="meta-pill"><i class="ti ti-book" aria-hidden="true"></i>PrepInsta TCS Programming</span>
+        <span class="meta-pill"><i class="ti ti-code" aria-hidden="true"></i>GeeksforGeeks TCS NQT tag</span>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <p>TCS NQT does NOT ask you to write programs in this section — it asks you to predict output or identify errors. Practice reading code, not writing it.</p>
+    </div>
+  </div>
+
+  <div id="panel-dbms" class="panel">
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#FAEEDA;color:#633806;">Week 6 — Days 1 & 2</span>
+        <div>
+          <div class="week-title">DBMS Theory — Interview Essentials</div>
+          <div class="week-sub">Only what TCS actually asks — nothing more</div>
+        </div>
+      </div>
+      <div class="concept-list">
+        <div class="concept-item"><span class="concept-num">1</span><span>Keys — Primary, Foreign, Candidate, Super, Composite key</span></div>
+        <div class="concept-item"><span class="concept-num">2</span><span>Normalization — 1NF, 2NF, 3NF with examples (very commonly asked verbally)</span></div>
+        <div class="concept-item"><span class="concept-num">3</span><span>ACID Properties — Atomicity, Consistency, Isolation, Durability</span></div>
+        <div class="concept-item"><span class="concept-num">4</span><span>ER Diagram — entity, attribute, relationship basics</span></div>
+        <div class="concept-item"><span class="concept-num">5</span><span>Transaction Management — commit, rollback, savepoint</span></div>
+        <div class="concept-item"><span class="concept-num">6</span><span>Indexing — what is it, why use it, clustered vs non-clustered</span></div>
+        <div class="concept-item"><span class="concept-num">7</span><span>Joins theory — why joins exist, inner vs outer difference</span></div>
+        <div class="concept-item"><span class="concept-num">8</span><span>DDL vs DML vs DCL vs TCL commands — just the categories</span></div>
+      </div>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#FAEEDA;color:#633806;">Week 6 — Days 3–7</span>
+        <div>
+          <div class="week-title">MySQL Queries — Full Practice</div>
+          <div class="week-sub">Write every query by hand — no copy-paste</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">SELECT, WHERE, ORDER BY</div>
+        <div class="topic-item">GROUP BY + HAVING</div>
+        <div class="topic-item">INNER JOIN</div>
+        <div class="topic-item">LEFT JOIN & RIGHT JOIN</div>
+        <div class="topic-item">SELF JOIN</div>
+        <div class="topic-item">Aggregate: COUNT, SUM, AVG, MAX, MIN</div>
+        <div class="topic-item">DISTINCT, LIKE, BETWEEN, IN</div>
+        <div class="topic-item">Subqueries</div>
+        <div class="topic-item">EXISTS & NOT EXISTS</div>
+        <div class="topic-item">CASE WHEN statements</div>
+        <div class="topic-item">NULL — IS NULL, COALESCE</div>
+        <div class="topic-item">String functions — UPPER, SUBSTR, LENGTH</div>
+        <div class="topic-item">Date functions basics</div>
+        <div class="topic-item">CREATE, INSERT, UPDATE, DELETE</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>10 queries/day min</span>
+        <span class="meta-pill"><i class="ti ti-brand-github" aria-hidden="true"></i>HackerRank SQL Easy+Medium</span>
+        <span class="meta-pill"><i class="ti ti-world" aria-hidden="true"></i>W3Schools SQL first</span>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <p>For the interview: practice explaining your query out loud. Interviewers at TCS ask "why did you use GROUP BY here?" — being able to explain is as important as writing it correctly.</p>
+    </div>
+  </div>
+
+  <div id="panel-coding" class="panel">
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge" style="background:#FAECE7;color:#993C1D;">Week 7</span>
+        <div>
+          <div class="week-title">Coding / DSA — NQT Level</div>
+          <div class="week-sub">TCS NQT has 2 coding questions — usually Easy to Medium</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Arrays — traversal, rotation</div>
+        <div class="topic-item">Strings — reverse, palindrome</div>
+        <div class="topic-item">Pattern printing</div>
+        <div class="topic-item">Factorial, Fibonacci, Prime</div>
+        <div class="topic-item">GCD & LCM via code</div>
+        <div class="topic-item">Linear & Binary Search</div>
+        <div class="topic-item">Bubble & Selection Sort</div>
+        <div class="topic-item">2D Arrays basics</div>
+        <div class="topic-item">String to int conversion</div>
+        <div class="topic-item">Count digits, reverse number</div>
+        <div class="topic-item">Frequency counting</div>
+        <div class="topic-item">Anagram check</div>
+      </div>
+      <div class="divider"></div>
+      <div class="meta-row">
+        <span class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i>2–3 problems/day</span>
+        <span class="meta-pill"><i class="ti ti-book" aria-hidden="true"></i>HackerRank Easy first</span>
+        <span class="meta-pill"><i class="ti ti-code" aria-hidden="true"></i>PrepInsta TCS Coding 2024</span>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <p>Use any language you're most comfortable in — Python recommended for speed. TCS does NOT restrict language choice in coding section.</p>
+    </div>
+
+    <div class="week-card" style="border-color:#F0997B;">
+      <div class="week-header">
+        <span class="week-badge" style="background:#FAECE7;color:#993C1D;">Higher Package Track</span>
+        <div>
+          <div class="week-title">Advanced Coding (optional)</div>
+          <div class="week-sub">Needed for Digital/Prime roles — 6–9 LPA range</div>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-item">Sliding Window</div>
+        <div class="topic-item">Two Pointer technique</div>
+        <div class="topic-item">Stack & Queue basics</div>
+        <div class="topic-item">HashMap / Dictionary</div>
+        <div class="topic-item">Recursion problems</div>
+        <div class="topic-item">Dynamic Programming (easy)</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-daily" class="panel">
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px;">Daily 3-hour breakdown — fits around college schedule</p>
+    <div class="daily-grid">
+      <div class="daily-card">
+        <div class="daily-time">1 hr</div>
+        <div class="daily-desc">Aptitude or Reasoning practice — timed</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-time">30 min</div>
+        <div class="daily-desc">Verbal English — questions or reading</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-time">1 hr</div>
+        <div class="daily-desc">Current week's main topic</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-time">30 min</div>
+        <div class="daily-desc">Previous day revision — only mistakes</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px;">Week 8 — final week schedule</p>
+    <div class="concept-list">
+      <div class="concept-item"><span class="concept-num">Mon</span><span>Full mock test → identify weak spots</span></div>
+      <div class="concept-item"><span class="concept-num">Tue</span><span>Revise weakest aptitude chapter only</span></div>
+      <div class="concept-item"><span class="concept-num">Wed</span><span>Full mock test → compare with Mon's score</span></div>
+      <div class="concept-item"><span class="concept-num">Thu</span><span>Revise SQL + DBMS theory flashcards</span></div>
+      <div class="concept-item"><span class="concept-num">Fri</span><span>Full mock test — timed and strict</span></div>
+      <div class="concept-item"><span class="concept-num">Sat</span><span>Programming Logic + Coding revision</span></div>
+      <div class="concept-item"><span class="concept-num">Sun</span><span>Light revision + rest — exam mindset</span></div>
+    </div>
+
+    <div class="tip-box">
+      <p>During Week 8 do NOT start any new topic. Your only job is to identify weak patterns in mock tests and patch them. Speed + accuracy matters more than new knowledge now.</p>
+    </div>
+  </div>
+
+  <div id="panel-resources" class="panel">
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px;">Everything you need — bookmarked and categorised</p>
+
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;">Aptitude & Reasoning</p>
+    <div class="website-list" style="margin-bottom:16px;">
+      <div class="website-card">
+        <div><div class="website-name">IndiaBix.com</div><div class="website-desc">Best for Aptitude + Reasoning questions</div></div>
+        <span class="website-badge" style="background:#EEEDFE;color:#3C3489;">Free</span>
+      </div>
+      <div class="website-card">
+        <div><div class="website-name">RS Aggarwal — Quantitative Aptitude</div><div class="website-desc">Book — key chapters only (not full book)</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Book</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;">TCS NQT Specific</p>
+    <div class="website-list" style="margin-bottom:16px;">
+      <div class="website-card">
+        <div><div class="website-name">PrepInsta — TCS NQT</div><div class="website-desc">Previous year questions, section-wise practice</div></div>
+        <span class="website-badge" style="background:#EEEDFE;color:#3C3489;">Free + Paid</span>
+      </div>
+      <div class="website-card">
+        <div><div class="website-name">TCS iON Practice Platform</div><div class="website-desc">Official TCS mock tests — use this first</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Official</span>
+      </div>
+      <div class="website-card">
+        <div><div class="website-name">GeeksforGeeks — TCS NQT tag</div><div class="website-desc">Programming logic + coding questions</div></div>
+        <span class="website-badge" style="background:#EEEDFE;color:#3C3489;">Free</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;">SQL & DBMS</p>
+    <div class="website-list" style="margin-bottom:16px;">
+      <div class="website-card">
+        <div><div class="website-name">W3Schools SQL</div><div class="website-desc">Start here — fastest way to learn syntax</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Free</span>
+      </div>
+      <div class="website-card">
+        <div><div class="website-name">HackerRank SQL section</div><div class="website-desc">Easy + Medium problems — NQT level</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Free</span>
+      </div>
+      <div class="website-card">
+        <div><div class="website-name">GeeksforGeeks DBMS</div><div class="website-desc">Normalization, Keys, ACID explained well</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Free</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;">Coding Practice</p>
+    <div class="website-list">
+      <div class="website-card">
+        <div><div class="website-name">HackerRank</div><div class="website-desc">Filter by "Easy" — solve 2–3 daily</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Free</span>
+      </div>
+      <div class="website-card">
+        <div><div class="website-name">LeetCode Easy problems</div><div class="website-desc">Arrays and Strings — TCS frequently asks these patterns</div></div>
+        <span class="website-badge" style="background:#E1F5EE;color:#0F6E56;">Free</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
