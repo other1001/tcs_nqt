@@ -1,0 +1,383 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.root{font-family:var(--font-sans);padding:1rem 0;}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem;}
+.nb{padding:6px 13px;border-radius:20px;border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:var(--color-background-primary);color:var(--color-text-secondary);transition:all .15s;}
+.nb.on{background:#1A5C38;color:#E6F5EE;border-color:#1A5C38;}
+.nb:hover:not(.on){background:var(--color-background-secondary);}
+.pn{display:none;}.pn.on{display:block;}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:10px;}
+.h{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px;}
+.s{font-size:13px;color:var(--color-text-secondary);}
+.tag{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:500;white-space:nowrap;}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:12px 0;}
+.tip{background:#E1F5EE;border:0.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:11px 13px;margin:10px 0;}
+.tip p{font-size:13px;color:#085041;}
+.warn{background:#FAEEDA;border:0.5px solid #FAC775;border-radius:var(--border-radius-md);padding:11px 13px;margin:10px 0;}
+.warn p{font-size:13px;color:#633806;}
+.lbl{font-size:11px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:.05em;text-transform:uppercase;margin:12px 0 7px;}
+.list{display:flex;flex-direction:column;gap:6px;}
+.li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--color-text-primary);padding:8px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);}
+.li-n{font-weight:500;color:var(--color-text-tertiary);width:22px;flex-shrink:0;}
+.group-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;margin-bottom:8px;}
+.group-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.group-name{font-size:14px;font-weight:500;color:var(--color-text-primary);}
+.group-topics{font-size:13px;color:var(--color-text-secondary);}
+.freq-bar{height:5px;border-radius:3px;margin-top:8px;}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:1.25rem;}
+.stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;}
+.stat-v{font-size:20px;font-weight:500;color:var(--color-text-primary);}
+.stat-l{font-size:12px;color:var(--color-text-secondary);margin-top:2px;}
+.week-card{border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:12px 14px;margin-bottom:8px;background:var(--color-background-primary);}
+.week-label{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.week-badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;}
+.week-title{font-size:14px;font-weight:500;color:var(--color-text-primary);}
+.dep-note{font-size:12px;color:var(--color-text-tertiary);font-style:italic;margin-bottom:8px;}
+.topic-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.chip{font-size:12px;padding:3px 10px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary);}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.meta-pill{font-size:12px;padding:3px 9px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);}
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{font-size:12px;color:var(--color-text-tertiary);font-weight:500;text-align:left;padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);}
+.tbl td{font-size:13px;color:var(--color-text-primary);padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);}
+.tbl tr:last-child td{border-bottom:none;}
+.trick-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:11px 13px;margin-bottom:6px;}
+.trick-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px;}
+.trick-body{font-size:13px;color:var(--color-text-secondary);}
+.arrow{color:var(--color-text-tertiary);font-size:12px;margin:0 2px;}
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+.flow-chip{font-size:12px;padding:4px 10px;border-radius:20px;font-weight:500;}
+</style>
+
+<div class="root">
+<div class="nav">
+  <button class="nb on" onclick="show('overview')">Overview</button>
+  <button class="nb" onclick="show('grouping')">Group Analysis</button>
+  <button class="nb" onclick="show('roadmap')">Week-by-Week</button>
+  <button class="nb" onclick="show('tricks')">Shortcuts & Tricks</button>
+  <button class="nb" onclick="show('practice')">Practice Strategy</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="pn-overview" class="pn on">
+  <div class="stat-row">
+    <div class="stat"><div class="stat-v">27</div><div class="stat-l">total topics</div></div>
+    <div class="stat"><div class="stat-v">11</div><div class="stat-l">groups</div></div>
+    <div class="stat"><div class="stat-v">3 wks</div><div class="stat-l">focused prep</div></div>
+    <div class="stat"><div class="stat-v">30/day</div><div class="stat-l">questions target</div></div>
+  </div>
+
+  <div class="tip"><p><strong>Is the image grouping good?</strong> Yes — topics in the same group share concepts and formulas. But the study order must follow priority + dependency, not group number. See Week-by-Week for the corrected sequence.</p></div>
+
+  <div class="lbl">Correct study flow — priority + dependency aligned</div>
+  <div class="flow">
+    <span class="flow-chip" style="background:#FCEBEB;color:#791F1F;">G1 Numbers</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FCEBEB;color:#791F1F;">G5 % Ratio</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FCEBEB;color:#791F1F;">G6 P&L</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FCEBEB;color:#791F1F;">G3 Speed</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FCEBEB;color:#791F1F;">G4 Time&Work</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FAEEDA;color:#633806;">G7 SI/CI</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FAEEDA;color:#633806;">G2 Avg/Ages</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FAEEDA;color:#633806;">G8 Prob/P&C</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#FAEEDA;color:#633806;">G9 Clock/Cal</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#E6F1FB;color:#185FA5;">G10 Mensuration</span><span class="arrow">→</span>
+    <span class="flow-chip" style="background:#E6F1FB;color:#185FA5;">G11 H&D</span>
+  </div>
+
+  <div class="lbl">Priority tier for TCS NQT</div>
+  <div class="group-card" style="border-left:3px solid #991F1F;">
+    <div class="group-top"><span class="group-name">Tier 1 — Do These First</span><span class="tag" style="background:#FCEBEB;color:#791F1F;">10–12 questions in NQT</span></div>
+    <div class="group-topics">Group 1 (Numbers) · Group 5 (%, Ratio) · Group 6 (P&L) · Group 3 (Speed) · Group 4 (Time & Work)</div>
+    <div class="freq-bar" style="background:#991F1F;width:95%;"></div>
+  </div>
+  <div class="group-card" style="border-left:3px solid #854F0B;">
+    <div class="group-top"><span class="group-name">Tier 2 — Do After Tier 1</span><span class="tag" style="background:#FAEEDA;color:#633806;">6–8 questions in NQT</span></div>
+    <div class="group-topics">Group 7 (SI/CI) · Group 2 (Avg, Ages) · Group 8 (Prob, P&C) · Group 9 (Clock, Calendar)</div>
+    <div class="freq-bar" style="background:#854F0B;width:65%;"></div>
+  </div>
+  <div class="group-card" style="border-left:3px solid #185FA5;">
+    <div class="group-top"><span class="group-name">Tier 3 — Cover if Time Allows</span><span class="tag" style="background:#E6F1FB;color:#185FA5;">3–4 questions in NQT</span></div>
+    <div class="group-topics">Group 10 (Mensuration) · Group 11 (Height & Distance)</div>
+    <div class="freq-bar" style="background:#185FA5;width:35%;"></div>
+  </div>
+
+  <div class="warn"><p>Group 11 (Height & Distance) is marked "Independent chapter" for a reason — it requires trigonometry and has low TCS NQT frequency. Do it last or skip if time is short.</p></div>
+</div>
+
+<!-- GROUP ANALYSIS -->
+<div id="pn-grouping" class="pn">
+  <div class="lbl">All 11 groups — NQT relevance and your action</div>
+  <table class="tbl">
+    <thead><tr><th>Group</th><th>Topics</th><th>NQT Freq</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Group 1</strong></td><td>Numbers, HCF/LCM, Fractions, Sq Root, Simplification, Surds</td><td><span class="tag" style="background:#FCEBEB;color:#791F1F;">Very High</span></td><td>Start here — foundation of everything</td></tr>
+      <tr><td><strong>Group 5</strong></td><td>Percentage, Ratio, Chain Rule, Work & Wages, Partnership, Alligation</td><td><span class="tag" style="background:#FCEBEB;color:#791F1F;">Very High</span></td><td>Highest question count in NQT</td></tr>
+      <tr><td><strong>Group 6</strong></td><td>Discount, Profit & Loss</td><td><span class="tag" style="background:#FCEBEB;color:#791F1F;">Very High</span></td><td>Needs % from Group 5 first — do after</td></tr>
+      <tr><td><strong>Group 3</strong></td><td>Speed/Distance/Time, Boats & Streams, Trains</td><td><span class="tag" style="background:#FCEBEB;color:#791F1F;">High</span></td><td>Formula-based — fast to learn</td></tr>
+      <tr><td><strong>Group 4</strong></td><td>Time & Work, Pipes & Cisterns</td><td><span class="tag" style="background:#FCEBEB;color:#791F1F;">High</span></td><td>Same concept, different context</td></tr>
+      <tr><td><strong>Group 7</strong></td><td>Simple Interest, Compound Interest</td><td><span class="tag" style="background:#FAEEDA;color:#633806;">Medium</span></td><td>Needs % base — do after Group 5</td></tr>
+      <tr><td><strong>Group 2</strong></td><td>Average, Problem on Ages</td><td><span class="tag" style="background:#FAEEDA;color:#633806;">Medium</span></td><td>Easy topics — cover in 2 days</td></tr>
+      <tr><td><strong>Group 8</strong></td><td>Probability, Permutations & Combinations</td><td><span class="tag" style="background:#FAEEDA;color:#633806;">Medium</span></td><td>Conceptual — needs more time</td></tr>
+      <tr><td><strong>Group 9</strong></td><td>Clocks, Calendars</td><td><span class="tag" style="background:#FAEEDA;color:#633806;">Medium</span></td><td>Trick-based — 1 day each</td></tr>
+      <tr><td><strong>Group 10</strong></td><td>Area, Volume & Surface Area</td><td><span class="tag" style="background:#E6F1FB;color:#185FA5;">Lower</span></td><td>Cover only if Tier 1 & 2 done</td></tr>
+      <tr><td><strong>Group 11</strong></td><td>Height & Distance</td><td><span class="tag" style="background:#E6F1FB;color:#185FA5;">Lowest</span></td><td>Skip if short on time</td></tr>
+    </tbody>
+  </table>
+  <div class="tip"><p>Group 6 (P&L) depends on Group 5 (%). Group 7 (SI/CI) also needs % understanding. This is why the corrected order puts Group 5 before both of them — not just for priority, but because the concept chain demands it.</p></div>
+</div>
+
+<!-- ROADMAP — FIXED -->
+<div id="pn-roadmap" class="pn">
+  <div class="tip"><p>This order is now both <strong>priority-correct</strong> (high NQT weightage first) and <strong>dependency-correct</strong> (topics that need prerequisites come after them).</p></div>
+
+  <div class="lbl">Week 1 — Foundation + Highest Priority</div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FCEBEB;color:#791F1F;">Days 1–4</span>
+      <span class="week-title">Group 1 — Numbers</span>
+      <span class="tag" style="background:#FCEBEB;color:#791F1F;">Tier 1</span>
+    </div>
+    <div class="dep-note">No dependency — start here, it's the foundation</div>
+    <div class="topic-chips">
+      <span class="chip">Problems on Numbers</span>
+      <span class="chip">HCF & LCM</span>
+      <span class="chip">Fractions & Decimals</span>
+      <span class="chip">Square & Cube Root</span>
+      <span class="chip">Simplification</span>
+      <span class="chip">Surds & Indices</span>
+    </div>
+    <div class="meta">
+      <span class="meta-pill">30 questions/day</span>
+      <span class="meta-pill">IndiaBix + RS Aggarwal</span>
+    </div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FCEBEB;color:#791F1F;">Days 5–7</span>
+      <span class="week-title">Group 5 — Percentage, Ratio & Related</span>
+      <span class="tag" style="background:#FCEBEB;color:#791F1F;">Tier 1 · Highest weightage</span>
+    </div>
+    <div class="dep-note">Needs Group 1 base — that's why it comes now, not before</div>
+    <div class="topic-chips">
+      <span class="chip">Percentage</span>
+      <span class="chip">Ratio & Proportion</span>
+      <span class="chip">Chain Rule</span>
+      <span class="chip">Work & Wages</span>
+      <span class="chip">Partnership</span>
+      <span class="chip">Alligation & Mixture</span>
+    </div>
+    <div class="meta">
+      <span class="meta-pill">30 questions/day</span>
+      <span class="meta-pill">Master % shortcuts first</span>
+    </div>
+  </div>
+
+  <div class="lbl">Week 2 — Core High-Priority Topics</div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FCEBEB;color:#791F1F;">Days 8–9</span>
+      <span class="week-title">Group 6 — Profit & Loss, Discount</span>
+      <span class="tag" style="background:#FCEBEB;color:#791F1F;">Tier 1</span>
+    </div>
+    <div class="dep-note">Needs Percentage (Group 5) — that's exactly why Group 5 came first</div>
+    <div class="topic-chips">
+      <span class="chip">Profit & Loss</span>
+      <span class="chip">Discount</span>
+    </div>
+    <div class="meta">
+      <span class="meta-pill">30 questions/day</span>
+      <span class="meta-pill">Successive discount formula — must memorise</span>
+    </div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FCEBEB;color:#791F1F;">Days 10–11</span>
+      <span class="week-title">Group 3 — Speed, Distance & Time</span>
+      <span class="tag" style="background:#FCEBEB;color:#791F1F;">Tier 1</span>
+    </div>
+    <div class="dep-note">Independent topic — can be done any time in Tier 1</div>
+    <div class="topic-chips">
+      <span class="chip">Speed Distance Time</span>
+      <span class="chip">Boats & Streams</span>
+      <span class="chip">Problems on Trains</span>
+    </div>
+    <div class="meta">
+      <span class="meta-pill">30 questions/day</span>
+      <span class="meta-pill">Relative speed is key concept</span>
+    </div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FCEBEB;color:#791F1F;">Days 12–13</span>
+      <span class="week-title">Group 4 — Time & Work, Pipes & Cisterns</span>
+      <span class="tag" style="background:#FCEBEB;color:#791F1F;">Tier 1</span>
+    </div>
+    <div class="dep-note">Same underlying concept — learn together, saves time</div>
+    <div class="topic-chips">
+      <span class="chip">Time & Work</span>
+      <span class="chip">Pipes & Cisterns</span>
+    </div>
+    <div class="meta">
+      <span class="meta-pill">30 questions/day</span>
+      <span class="meta-pill">Unitary method is the only technique needed</span>
+    </div>
+  </div>
+
+  <div class="week-card" style="border-color:var(--color-border-secondary);background:var(--color-background-secondary);">
+    <div class="week-label">
+      <span class="week-badge" style="background:#E1F5EE;color:#085041;">Day 14</span>
+      <span class="week-title">Full revision — Tier 1 only</span>
+    </div>
+    <div class="dep-note">30 mixed questions from Groups 1, 5, 6, 3, 4 — timed 35 mins</div>
+  </div>
+
+  <div class="lbl">Week 3 — Tier 2 + Tier 3 + Final Revision</div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FAEEDA;color:#633806;">Days 15–16</span>
+      <span class="week-title">Group 7 — SI & CI</span>
+      <span class="tag" style="background:#FAEEDA;color:#633806;">Tier 2</span>
+    </div>
+    <div class="dep-note">Needs Percentage base from Group 5 — safe to do now</div>
+    <div class="topic-chips">
+      <span class="chip">Simple Interest</span>
+      <span class="chip">Compound Interest</span>
+    </div>
+    <div class="meta"><span class="meta-pill">25 questions/day</span></div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FAEEDA;color:#633806;">Days 17–18</span>
+      <span class="week-title">Group 2 — Average & Ages</span>
+      <span class="tag" style="background:#FAEEDA;color:#633806;">Tier 2 · Easy</span>
+    </div>
+    <div class="dep-note">Independent — quick wins, finish in 2 days</div>
+    <div class="topic-chips">
+      <span class="chip">Averages</span>
+      <span class="chip">Problems on Ages</span>
+    </div>
+    <div class="meta"><span class="meta-pill">25 questions/day</span></div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FAEEDA;color:#633806;">Days 19–20</span>
+      <span class="week-title">Group 8 — Probability & P&C</span>
+      <span class="tag" style="background:#FAEEDA;color:#633806;">Tier 2 · Conceptual</span>
+    </div>
+    <div class="dep-note">Needs Ratio base — safe to do after Group 5</div>
+    <div class="topic-chips">
+      <span class="chip">Probability</span>
+      <span class="chip">Permutations & Combinations</span>
+    </div>
+    <div class="meta"><span class="meta-pill">20 questions/day</span></div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#FAEEDA;color:#633806;">Days 21–22</span>
+      <span class="week-title">Group 9 — Clocks & Calendars</span>
+      <span class="tag" style="background:#FAEEDA;color:#633806;">Tier 2 · Trick-based</span>
+    </div>
+    <div class="dep-note">Independent — formula-driven, 1 day each is enough</div>
+    <div class="topic-chips">
+      <span class="chip">Clocks</span>
+      <span class="chip">Calendars</span>
+    </div>
+    <div class="meta"><span class="meta-pill">20 questions/day</span><span class="meta-pill">Clock angle formula — 1 formula covers all</span></div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-label">
+      <span class="week-badge" style="background:#E6F1FB;color:#185FA5;">Days 23–24</span>
+      <span class="week-title">Group 10 — Mensuration · Group 11 — H&D</span>
+      <span class="tag" style="background:#E6F1FB;color:#185FA5;">Tier 3 · Low priority</span>
+    </div>
+    <div class="dep-note">Skip Group 11 if time is tight — lowest NQT frequency</div>
+    <div class="topic-chips">
+      <span class="chip">Area</span>
+      <span class="chip">Volume & Surface Area</span>
+      <span class="chip">Height & Distance</span>
+    </div>
+    <div class="meta"><span class="meta-pill">15 questions/day</span></div>
+  </div>
+
+  <div class="week-card" style="border-color:var(--color-border-secondary);background:var(--color-background-secondary);">
+    <div class="week-label">
+      <span class="week-badge" style="background:#E1F5EE;color:#085041;">Days 25–21</span>
+      <span class="week-title">Full mock tests — NQT pattern, timed strictly</span>
+    </div>
+    <div class="dep-note">1 full mock every day. Review only mistakes. No new topics.</div>
+  </div>
+
+  <div class="lbl">Daily split inside each topic day</div>
+  <div class="list">
+    <div class="li"><span class="li-n">30m</span><span>Read concept + formula for new topic</span></div>
+    <div class="li"><span class="li-n">30m</span><span>Solve 15 questions on today's topic — timed</span></div>
+    <div class="li"><span class="li-n">30m</span><span>Revise yesterday's weak questions from error log</span></div>
+  </div>
+</div>
+
+<!-- TRICKS -->
+<div id="pn-tricks" class="pn">
+  <div class="lbl">Shortcuts you must memorise</div>
+  <div class="trick-card"><div class="trick-title">Percentage — fast calculation</div><div class="trick-body">To find X% of Y → find 10% first, then scale. Example: 35% of 240 → 10%=24, 30%=72, 5%=12 → 35%=84. Never multiply directly.</div></div>
+  <div class="trick-card"><div class="trick-title">Profit & Loss — shortcut</div><div class="trick-body">If CP=100, SP=120 → profit 20%. Discount is always on MP. Successive discounts of a% and b% = a+b−(ab/100). Memorise this formula.</div></div>
+  <div class="trick-card"><div class="trick-title">Time & Work — unitary method</div><div class="trick-body">If A does work in 'a' days and B in 'b' days → together = ab/(a+b) days. Same logic applies directly to Pipes & Cisterns.</div></div>
+  <div class="trick-card"><div class="trick-title">Speed Distance Time — relative speed</div><div class="trick-body">Same direction: speeds subtract. Opposite direction: speeds add. For trains crossing: distance = sum of lengths. Boats: upstream = B−S, downstream = B+S.</div></div>
+  <div class="trick-card"><div class="trick-title">HCF & LCM — product rule</div><div class="trick-body">HCF × LCM = Product of two numbers. Always. Use this to cross-check your answer or find one when the other is given.</div></div>
+  <div class="trick-card"><div class="trick-title">Compound Interest — quick 2-year trick</div><div class="trick-body">CI for 2 years = SI for 2 years + SI on first year's interest. Avoids the long formula completely for 2-year questions.</div></div>
+  <div class="trick-card"><div class="trick-title">Clocks — angle formula</div><div class="trick-body">Angle between hands at H hours M minutes = |30H − 5.5M|. If answer &gt; 180, subtract from 360. One formula for every clock question.</div></div>
+  <div class="trick-card"><div class="trick-title">Ratio & Proportion — cross multiply</div><div class="trick-body">If a:b = c:d then ad = bc. For compound ratios: multiply all numerators together and all denominators together.</div></div>
+  <div class="tip"><p>Don't memorise shortcuts without solving questions immediately after. Learn the shortcut → solve 10 questions using it → it sticks permanently.</p></div>
+</div>
+
+<!-- PRACTICE -->
+<div id="pn-practice" class="pn">
+  <div class="lbl">Where to practice — topic-wise</div>
+  <div class="list" style="margin-bottom:14px;">
+    <div class="li"><span class="li-n">→</span><span><strong>IndiaBix.com</strong> — best for topic-wise practice, free, unlimited questions</span></div>
+    <div class="li"><span class="li-n">→</span><span><strong>PrepInsta TCS section</strong> — NQT-pattern questions, closest to actual exam</span></div>
+    <div class="li"><span class="li-n">→</span><span><strong>RS Aggarwal QA book</strong> — only Tier 1 and Tier 2 chapters</span></div>
+    <div class="li"><span class="li-n">→</span><span><strong>CareerRide.com</strong> — the site from your image, has good topic tests</span></div>
+  </div>
+
+  <div class="lbl">Error log — most powerful habit</div>
+  <div class="card"><div class="s">Every wrong question → write topic, why you went wrong, correct approach. Review every Sunday. After 3 weeks you'll see clear patterns — those are your weak spots to target in mock tests.</div></div>
+
+  <div class="lbl">Mock test schedule</div>
+  <div class="list" style="margin-bottom:14px;">
+    <div class="li"><span class="li-n">Day 14</span><span>Tier 1 only mock — 30 mixed questions in 35 mins</span></div>
+    <div class="li"><span class="li-n">Day 21</span><span>Tier 1 + Tier 2 mock — 40 questions in 45 mins</span></div>
+    <div class="li"><span class="li-n">Days 25–21</span><span>Full NQT aptitude mock daily — 26 questions in 40 mins, strict timer</span></div>
+  </div>
+
+  <div class="lbl">Speed benchmarks to hit before exam</div>
+  <div class="list">
+    <div class="li"><span class="li-n">✓</span><span>Simple % and ratio questions — under 30 seconds</span></div>
+    <div class="li"><span class="li-n">✓</span><span>Profit & Loss with discount — under 60 seconds</span></div>
+    <div class="li"><span class="li-n">✓</span><span>Time & Work (2 person) — under 45 seconds</span></div>
+    <div class="li"><span class="li-n">✓</span><span>Speed/Distance/Time — under 60 seconds</span></div>
+    <div class="li"><span class="li-n">✓</span><span>SI/CI (2 year) — under 45 seconds</span></div>
+  </div>
+
+  <div class="warn"><p>NQT gives roughly 90 seconds per aptitude question. If you're taking 2–3 minutes during practice, you will not finish the exam. Time yourself from day one — not just in mock tests.</p></div>
+</div>
+
+</div>
+<script>
+function show(id){
+  document.querySelectorAll('.pn').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pn-'+id).classList.add('on');
+  event.target.classList.add('on');
+}
+</script>
